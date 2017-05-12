@@ -1,0 +1,29 @@
+def filter(val):
+
+    if int(val)  >= 100:
+        print  " thats a big number!"
+    elif int(val)  < 100:
+        print "thats a small number"
+    return
+
+
+def string_len(val):
+    if len(val) >= 50:
+        print "long sentence"
+    elif len(val) < 50:
+        print "short sentence"
+
+def list_len(val):
+
+        if len(val) >= 10:
+            print "big list"
+        else:
+            print "short list"
+
+
+
+
+filter(120)
+string_len("Experience is simply the name we give our mistakes")
+list_len(['name','address','phone number','social security number'])
+list_len([4,34,22,68,9,13,3,5,7,9,2,12,45,923])
