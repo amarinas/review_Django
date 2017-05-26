@@ -5,6 +5,13 @@
     <title>index</title>
   </head>
   <body>
-    <h1>hello there</h1>
+    <h1>Add a Book</h1>
+    <form action="create" method="post">
+      {% csrf_token %}
+      <input type="text" name="title" >
+      <input type="text" name="author" >
+      <input type="text" name="category" >
+      <input type="submit" value="Submit!">
+    </form>
   </body>
 </html>
