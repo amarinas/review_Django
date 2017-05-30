@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Your appointment has been scheduled!</h1>
+    {% for i in appointments %}
+    <h2>your appointment is at {{ i.time }} on {{ i.date }}. </h2>
+    {% endfor %}
     <a href="/"> make another appointment!</a>
   </body>
 </html>
