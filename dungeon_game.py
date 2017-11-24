@@ -1,4 +1,6 @@
 import random
+import os
+
 
 #draw the grid
 #random location for player
@@ -18,41 +20,58 @@ CELLS = [(0,0), (1,0), (2,0), (3,0), (4,0),
 
 ]
 
-def get_locations():
-    monster = None
-    door = None
-    player = None
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-    return monster, door, player
+
+def get_locations():
+    return random.sample(CELLS,3)
 
 def move_player(player, move):
-    #get the players location#
-    #left, x-1
-    #right, x +1
-    #up, y-1
-    #down, y+1
-    return player
+    x, y = player
+    if move == "LEFT":
+        x -= 1
+    if move == "RIGHT":
+        x += 1
+    if move == "UP":
+        y -= 1
+    if move == "DOWN":
+        y += 1
+    return x, y
+
 
 def get_moves(player):
     moves = ['LEFT', 'RIGHT', 'DOWN', 'UP']
-    #if y == 0, cant go up
-     #if y == 4, cant go DOWN
-     #if x == 0, cant go LEFT
-     #if x == 4, cant go RIGHT
+    x, y = player
+    if x == 0:
+        moves.remove("LEFT")
+    if x == 4:
+        moves.remove("RIGHT")
+    if y == 0:
+        moves.remove("UP")
+    if y == 4:
+        moves.remove("DOWN")
     return moves
 
+monster, door, player = get_locations()
 
 while True:
+    valid_moves = get_moves(player)
+    clear_screen()
     print("Welcome to the dungeon!!")
-    print("You're currently in room {}") # position of player
-    print("You can move {}") #moves available
-    print ("Enter QUIT to quit")
+    print("You're currently in room {}".format(player)) # position of player
+    print("You can move {}".format(", ".join(get_moves(valid_moves))))
+    print("Enter QUIT to quit")
 
-    move = input("> ")
+    move = raw_input("> ")
     move = move.upper()
 
     if move == 'QUIT':
         break
+    if move in valid_moves:
+        player = move_player(player, move)
+    else:
+        print("\n ** Hit a wall try again")
 
     #good move = change the player postition
     #bad move = dont change
